@@ -1,7 +1,7 @@
 BITS 32
 
 section .data
-msg db "Shutting down your computarz...", 0x0a
+msg db "Rebooting your computer...", 0x0a
 
 section .text
 global _start
@@ -11,7 +11,7 @@ _start:
 mov eax, 0x04  ; Syscall number 4 is write()
 mov ebx, 0x01  ; Set filedescriptor (first argument) to 1 -> stdout.
 mov ecx, msg   ; Put the string to print into ecx.
-mov edx, 0x21  ; Provide the length of the string including the terminating \x00 byte.
+mov edx, 0x1c  ; Provide the length of the string including the terminating \x00 byte.
 int 0x80       ; Call write()
 
 ; before calling reboot we should call the sync() syscall to prevent data loss.
